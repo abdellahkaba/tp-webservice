@@ -1,0 +1,83 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:tns="http://www.isi.com/matiere"
+           targetNamespace="http://www.isi.com/matiere"
+           elementFormDefault="qualified">
+    <xs:element name="GetMatiereRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="id" type="xs:long"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="GetMatiereResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="matiere" type="tns:Matiere"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="SaveMatiereRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="name" type="xs:string"/>
+                <xs:element name="credits" type="xs:int"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="SaveMatiereResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="Matiere" type="tns:Matiere"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="UpdateMatiereRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="id" type="xs:long"/>
+                <xs:element name="name" type="xs:string"/>
+                <xs:element name="credits" type="xs:int"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="UpdateMatiereResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="Matiere" type="tns:Matiere"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="DeleteMatiereRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="id" type="xs:long"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="DeleteMatiereResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="message" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="GetAllMatieresRequest">
+        <xs:complexType/>
+    </xs:element>
+    <xs:element name="GetAllMatieresResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="Matiere" type="tns:Matiere" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:complexType name="Matiere">
+        <xs:sequence>
+            <xs:element name="id" type="xs:long"/>
+            <xs:element name="name" type="xs:string"/>
+            <xs:element name="credits" type="xs:int"/>
+        </xs:sequence>
+    </xs:complexType>
+
+</xs:schema>

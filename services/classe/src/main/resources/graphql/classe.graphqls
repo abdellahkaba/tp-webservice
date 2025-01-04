@@ -1,0 +1,12 @@
+type Classe {
+    id: ID!
+    name: String!
+}
+
+type Query {
+    getAllClasses: [Classe]!
+}
+
+type Mutation {
+    createClasse(name: String!): Classe!
+}

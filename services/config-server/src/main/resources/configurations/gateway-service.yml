@@ -1,0 +1,17 @@
+server:
+  port: 8222
+spring:
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+      routes:
+        - id: student-service
+          uri: lb:http://STUDENT-SERVICE
+          predicates:
+            - Path=/api/v1/student/**
+        - id: matiere-service
+          uri: lb:http://MATIERE-SERVICE
+        - id: classe-service
+          uri: lb:http://CLASSE-SERVICE
