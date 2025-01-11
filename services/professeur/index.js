@@ -1,28 +1,33 @@
-const express = require('express')
-const app = express()
+const express = require('express');
+const cors = require('cors');
+const cookieParser = require('cookie-parser');
+const dotenv = require('dotenv').config();
 
-const cors = require('cors')
+const connectDB = require('./db/db.js');
+const prof_route = require('./routes/router');
+const eurekaClient = require('./eurekaClient'); // Importer le client Eureka
 
-const connectDB = require('./db/db.js')
-
-const dotenv = require('dotenv').config()
-
-const cookieParser = require('cookie-parser')
-
-const port = 8000
+const app = express();
+const port = process.env.PORT || 8000;
 
 app.use(cors({
-    origin: "*",
-    credentials: true
-}))
+    origin: '*',
+    credentials: true,
+}));
 
-connectDB
-app.use(cookieParser())
-const prof_route = require('./routes/router')
-app.use(express.json())
+connectDB;
+app.use(cookieParser());
+app.use(express.json());
+app.use('/api', prof_route);
 
-app.use('/api',prof_route)
+// Endpoint de statut pour Eureka
+app.get('/status', (req, res) => {
+    res.json({ status: 'UP' });
+});
 
-app.listen(port,function (){
-    console.log('server lancé')
-})
+// Démarrer le serveur
+app.listen(port, () => {
+    console.log(`Microservice en écoute sur le port ${port}`);
+});
+
+eurekaClient;

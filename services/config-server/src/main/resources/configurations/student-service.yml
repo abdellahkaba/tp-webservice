@@ -1,6 +1,4 @@
 spring:
-  application:
-    name: gestion-etudiant
   datasource:
     url: jdbc:postgresql://localhost:5432/student
     username: user

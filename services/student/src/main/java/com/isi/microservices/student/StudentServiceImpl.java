@@ -5,11 +5,13 @@ import com.isi.microservices.exception.BusinessErrorCodes;
 import com.isi.microservices.exception.EmailConflictException;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class StudentServiceImpl implements StudentService{
@@ -65,5 +67,6 @@ public class StudentServiceImpl implements StudentService{
         Student student = repository.findById(studentId)
                 .orElseThrow(() -> new EntityNotFoundException("Cet Etudiant n'existe pas avec ID : " + studentId));
         repository.delete(student);
+        log.info("Etudiant sup");
     }
 }

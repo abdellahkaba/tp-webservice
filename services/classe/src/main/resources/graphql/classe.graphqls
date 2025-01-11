@@ -1,12 +1,28 @@
-type Classe {
-    id: ID!
-    name: String!
-}
+#type Classe {
+#    id: ID!
+#    name: String!
+#}
+#
+#type Query {
+#    getAllClasses: [Classe]!
+#}
+#
+#type Mutation {
+#    createClasse(name: String!): Classe!
+#}
 
 type Query {
-    getAllClasses: [Classe]!
+    listClasses : [Classe],
+    getClasseById(id: Int): Classe
 }
 
 type Mutation {
-    createClasse(name: String!): Classe!
+    createClasse (name : String) : Classe
+    updateClasse(id: Int, name : String): Classe
+    deleteClasse(id: Int) : Classe
+}
+
+type Classe {
+    id : Int
+    name : String
 }
